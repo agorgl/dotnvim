@@ -32,7 +32,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "K", vim.lsp.buf.hover, opts)
     map("n", "<C-k>", vim.lsp.buf.signature_help, opts)
     map("n", "<leader>rn", vim.lsp.buf.rename, opts)
-    map("n", "<leader>f", vim.lsp.buf.format, opts)
     map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
   end,
 })
+
+-- Conform
+map("n", "<leader>f", function()
+  local conform = require("conform")
+  conform.format({ async = true, lsp_fallback = true })
+end)

@@ -6,6 +6,10 @@ return {
     priority = 1000,
     opts = {
       style = "darker",
+      highlights = {
+        NvimTreeNormal = { bg = "$bg0" },
+        NvimTreeEndOfBuffer = { bg = "$bg0" },
+      },
     },
     config = function(_, opts)
       require("plugins.configs.onedark").config(opts)

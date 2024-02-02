@@ -15,7 +15,15 @@ function M.config()
     end,
   })
 
-  local servers = {}
+  local servers = {
+    rust_analyzer = {},
+    pyright = {},
+    tsserver = {},
+    gopls = {},
+    jdtls = {},
+    clojure_lsp = {},
+    ccls = {},
+  }
 
   for server, opts in pairs(servers) do
     local config = {

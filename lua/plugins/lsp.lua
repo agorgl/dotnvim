@@ -6,4 +6,9 @@ return {
       require("plugins.configs.lsp").config()
     end,
   },
+  -- LSP servers
+  {
+    "williamboman/mason.nvim",
+    opts = {},
+  },
 }

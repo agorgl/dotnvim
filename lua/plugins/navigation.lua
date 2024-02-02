@@ -13,4 +13,11 @@ return {
       require("plugins.configs.telescope").config()
     end,
   },
+  -- File explorer
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    opts = {},
+  },
 }

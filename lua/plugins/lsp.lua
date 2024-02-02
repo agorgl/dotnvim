@@ -11,4 +11,9 @@ return {
     "williamboman/mason.nvim",
     opts = {},
   },
+  -- LSP servers integration
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {},
+  },
 }

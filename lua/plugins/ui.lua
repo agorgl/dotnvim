@@ -2,7 +2,11 @@ return {
   -- Statusline
   {
     "nvim-lualine/lualine.nvim",
-    opts = {},
+    opts = {
+      extensions = {
+        "nvim-tree",
+      },
+    },
   },
   -- Bufferline
   {

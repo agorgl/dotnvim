@@ -11,3 +11,6 @@ map("n", "<leader>fw", telescope_builtin.live_grep)
 
 -- Nvimtree
 map("n", "<F2>", "<cmd>NvimTreeToggle<CR>")
+
+-- Fugitive
+map("n", "<leader>gg", "<cmd>tab Git<CR>")

@@ -18,6 +18,8 @@ return {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
-    opts = {},
+    config = function()
+      require("plugins.configs.nvimtree").config()
+    end,
   },
 }

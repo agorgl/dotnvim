@@ -4,8 +4,11 @@ return {
     "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("plugins.configs.onedark").config()
+    opts = {
+      style = "darker",
+    },
+    config = function(_, opts)
+      require("plugins.configs.onedark").config(opts)
     end,
   },
   -- Background color

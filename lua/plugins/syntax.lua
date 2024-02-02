@@ -5,4 +5,6 @@ return {
     build = ":TSUpdate",
     event = "VeryLazy",
   },
+  -- Buffer option heuristics
+  "tpope/vim-sleuth",
 }

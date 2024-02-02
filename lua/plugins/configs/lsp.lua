@@ -24,7 +24,7 @@ function M.config()
     for k, v in pairs(opts) do
       config[k] = v
     end
-    lspconfig[lsp].setup(config)
+    lspconfig[server].setup(config)
   end
 end
 

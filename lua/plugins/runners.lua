@@ -5,4 +5,9 @@ return {
     version = "*",
     opts = {},
   },
+  -- Task runner
+  {
+    "stevearc/overseer.nvim",
+    opts = {},
+  },
 }

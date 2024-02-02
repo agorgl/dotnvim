@@ -8,4 +8,9 @@ return {
       require("plugins.configs.onedark").config()
     end,
   },
+  -- Background color
+  {
+    "agorgl/nvim-bg",
+    opts = {},
+  },
 }

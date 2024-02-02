@@ -16,4 +16,9 @@ return {
     event = "VeryLazy",
     opts = {},
   },
+  -- Notifications
+  {
+    "j-hui/fidget.nvim",
+    opts = {},
+  },
 }

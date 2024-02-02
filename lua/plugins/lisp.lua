@@ -13,4 +13,9 @@ return {
     },
     ft = { "clojure", "scheme" },
   },
+  -- Interactive evaluation
+  {
+    "Olical/conjure",
+    ft = { "clojure", "scheme" },
+  },
 }

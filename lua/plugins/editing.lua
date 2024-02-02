@@ -18,4 +18,10 @@ return {
     event = "InsertEnter",
     opts = {},
   },
+  -- Formatter
+  {
+    "stevearc/conform.nvim",
+    event = "BufWritePre",
+    opts = {},
+  },
 }

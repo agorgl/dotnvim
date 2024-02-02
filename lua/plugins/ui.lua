@@ -8,7 +8,13 @@ return {
   {
     "akinsho/bufferline.nvim",
     version = "*",
-    opts = {},
+    opts = {
+      options = {
+        mode = "tabs",
+        show_buffer_close_icons = false,
+        always_show_bufferline = false,
+      },
+    },
   },
   -- Keybindings
   {

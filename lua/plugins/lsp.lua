@@ -16,4 +16,10 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {},
   },
+  -- LSP signatures
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }

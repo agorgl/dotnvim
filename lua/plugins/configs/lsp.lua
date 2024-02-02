@@ -9,6 +9,9 @@ function M.config()
     callback = function(ev)
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+      -- Enable signature plugin
+      local lsp_signature = require("lsp_signature")
+      lsp_signature.on_attach({}, ev.buf)
     end,
   })
 

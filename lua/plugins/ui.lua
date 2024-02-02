@@ -10,4 +10,10 @@ return {
     version = "*",
     opts = {},
   },
+  -- Keybindings
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
 }

@@ -9,7 +9,7 @@ return {
   {
     "guns/vim-sexp",
     dependencies = {
-      "vim-sexp-mappings-for-regular-people",
+      "tpope/vim-sexp-mappings-for-regular-people",
     },
     ft = { "clojure", "scheme" },
   },

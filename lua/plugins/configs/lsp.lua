@@ -1,5 +1,17 @@
 local M = {}
 
+function M.setup_lsp_signature(buf)
+  local lsp_signature = require("lsp_signature")
+  lsp_signature.on_attach({
+    bind = true,
+    hint_enable = false,
+    hint_prefix = "",
+    handler_opts = {
+      border = "rounded",
+    },
+  }, buf)
+end
+
 function M.setup_diagnostic_signs()
   local diagnostic_signs = {
     { name = "DiagnosticSignError", text = "✘✘" },
@@ -65,15 +77,7 @@ function M.config()
       -- Enable completion triggered by <c-x><c-o>
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
       -- Enable signature plugin
-      local lsp_signature = require("lsp_signature")
-      lsp_signature.on_attach({
-        bind = true,
-        hint_enable = false,
-        hint_prefix = "",
-        handler_opts = {
-          border = "rounded",
-        },
-      }, ev.buf)
+      M.setup_lsp_signature(ev.buf)
     end,
   })
 

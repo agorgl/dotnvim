@@ -12,6 +12,18 @@ function M.setup_lsp_signature(buf)
   }, buf)
 end
 
+function M.setup_lsp_attach()
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+    callback = function(ev)
+      -- Enable completion triggered by <c-x><c-o>
+      vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+      -- Enable signature plugin
+      M.setup_lsp_signature(ev.buf)
+    end,
+  })
+end
+
 function M.setup_diagnostic_signs()
   local diagnostic_signs = {
     { name = "DiagnosticSignError", text = "✘✘" },
@@ -71,16 +83,7 @@ function M.setup_language_servers()
 end
 
 function M.config()
-  vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(ev)
-      -- Enable completion triggered by <c-x><c-o>
-      vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-      -- Enable signature plugin
-      M.setup_lsp_signature(ev.buf)
-    end,
-  })
-
+  M.setup_lsp_attach()
   M.setup_diagnostic_signs()
   M.setup_diagnostic_config()
   M.setup_floating_windows()

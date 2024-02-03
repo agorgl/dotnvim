@@ -24,6 +24,22 @@ function M.setup_lsp_attach()
   })
 end
 
+function M.setup_semantic_highlights()
+  local hide_semantic_highlights = function()
+    vim.api.nvim_set_hl(0, "@lsp.type.function", {})
+    for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+      vim.api.nvim_set_hl(0, group, {})
+    end
+  end
+
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    group = vim.api.nvim_create_augroup("LspSemanticHighlightsClear", {}),
+    callback = hide_semantic_highlights,
+  })
+
+  hide_semantic_highlights()
+end
+
 function M.setup_diagnostic_signs()
   local diagnostic_signs = {
     { name = "DiagnosticSignError", text = "✘✘" },
@@ -94,6 +110,7 @@ end
 
 function M.config()
   M.setup_lsp_attach()
+  M.setup_semantic_highlights()
   M.setup_diagnostic_signs()
   M.setup_diagnostic_config()
   M.setup_diagnostic_hover()

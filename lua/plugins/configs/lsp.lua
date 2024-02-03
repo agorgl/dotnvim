@@ -23,6 +23,18 @@ function M.setup_diagnostic_config()
   vim.diagnostic.config(config)
 end
 
+function M.setup_floating_windows()
+  local handlers = {
+    ["textDocument/hover"] = vim.lsp.handlers.hover,
+    ["textDocument/signatureHelp"] = vim.lsp.handlers.signature_help,
+  }
+  for handler, fn in pairs(handlers) do
+    vim.lsp.handlers[handler] = vim.lsp.with(fn, {
+      border = "rounded",
+    })
+  end
+end
+
 function M.config()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -47,6 +59,7 @@ function M.config()
 
   M.setup_diagnostic_signs()
   M.setup_diagnostic_config()
+  M.setup_floating_windows()
 
   local servers = {
     rust_analyzer = {},

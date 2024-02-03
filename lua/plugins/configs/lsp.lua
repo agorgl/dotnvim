@@ -35,10 +35,30 @@ function M.setup_floating_windows()
   end
 end
 
-function M.config()
+function M.setup_language_servers()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+  local servers = {
+    rust_analyzer = {},
+    pyright = {},
+    tsserver = {},
+    gopls = {},
+    jdtls = {},
+    clojure_lsp = {},
+    ccls = {},
+  }
+
+  for server, opts in pairs(servers) do
+    local config = {
+      capabilities = capabilities,
+    }
+    config = vim.tbl_extend("force", config, opts)
+    lspconfig[server].setup(config)
+  end
+end
+
+function M.config()
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(ev)
@@ -60,26 +80,7 @@ function M.config()
   M.setup_diagnostic_signs()
   M.setup_diagnostic_config()
   M.setup_floating_windows()
-
-  local servers = {
-    rust_analyzer = {},
-    pyright = {},
-    tsserver = {},
-    gopls = {},
-    jdtls = {},
-    clojure_lsp = {},
-    ccls = {},
-  }
-
-  for server, opts in pairs(servers) do
-    local config = {
-      capabilities = capabilities,
-    }
-    for k, v in pairs(opts) do
-      config[k] = v
-    end
-    lspconfig[server].setup(config)
-  end
+  M.setup_language_servers()
 end
 
 return M

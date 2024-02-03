@@ -38,6 +38,7 @@ end
 
 function M.setup_diagnostic_config()
   local config = {
+    underline = false,
     virtual_text = false,
     severity_sort = true,
     float = {

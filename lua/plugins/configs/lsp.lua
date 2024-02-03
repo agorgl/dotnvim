@@ -1,5 +1,17 @@
 local M = {}
 
+function M.setup_diagnostic_signs()
+  local diagnostic_signs = {
+    { name = "DiagnosticSignError", text = "✘✘" },
+    { name = "DiagnosticSignWarn", text = "!!" },
+    { name = "DiagnosticSignInfo", text = "--" },
+    { name = "DiagnosticSignHint", text = "**" },
+  }
+  for _, sign in ipairs(diagnostic_signs) do
+    vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name })
+  end
+end
+
 function M.config()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -21,6 +33,8 @@ function M.config()
       }, ev.buf)
     end,
   })
+
+  M.setup_diagnostic_signs()
 
   local servers = {
     rust_analyzer = {},

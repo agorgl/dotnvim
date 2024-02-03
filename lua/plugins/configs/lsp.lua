@@ -11,7 +11,14 @@ function M.config()
       vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
       -- Enable signature plugin
       local lsp_signature = require("lsp_signature")
-      lsp_signature.on_attach({}, ev.buf)
+      lsp_signature.on_attach({
+        bind = true,
+        hint_enable = false,
+        hint_prefix = "",
+        handler_opts = {
+          border = "rounded",
+        },
+      }, ev.buf)
     end,
   })
 

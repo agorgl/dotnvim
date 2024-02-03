@@ -47,6 +47,15 @@ function M.setup_diagnostic_config()
   vim.diagnostic.config(config)
 end
 
+function M.setup_diagnostic_hover()
+  vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+    callback = function()
+      vim.diagnostic.open_float(nil, { focus = false })
+    end,
+  })
+end
+
 function M.setup_floating_windows()
   local handlers = {
     ["textDocument/hover"] = vim.lsp.handlers.hover,
@@ -86,6 +95,7 @@ function M.config()
   M.setup_lsp_attach()
   M.setup_diagnostic_signs()
   M.setup_diagnostic_config()
+  M.setup_diagnostic_hover()
   M.setup_floating_windows()
   M.setup_language_servers()
 end

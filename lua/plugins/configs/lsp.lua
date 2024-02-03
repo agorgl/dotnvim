@@ -12,6 +12,17 @@ function M.setup_diagnostic_signs()
   end
 end
 
+function M.setup_diagnostic_config()
+  local config = {
+    virtual_text = false,
+    severity_sort = true,
+    float = {
+      border = "rounded",
+    },
+  }
+  vim.diagnostic.config(config)
+end
+
 function M.config()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -35,6 +46,7 @@ function M.config()
   })
 
   M.setup_diagnostic_signs()
+  M.setup_diagnostic_config()
 
   local servers = {
     rust_analyzer = {},

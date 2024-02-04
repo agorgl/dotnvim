@@ -97,6 +97,21 @@ function M.setup_language_servers()
     jdtls = {},
     clojure_lsp = {},
     ccls = {},
+    tailwindcss = {
+      settings = {
+        tailwindCSS = {
+          experimental = {
+            classRegex = {
+              ':class\\s+"([^"]*)"',
+              ":[\\w-.#>]+\\.([\\w-]*)",
+            },
+          },
+          includeLanguages = {
+            clojure = "html",
+          },
+        },
+      },
+    },
   }
 
   for server, opts in pairs(servers) do

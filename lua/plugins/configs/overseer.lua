@@ -13,7 +13,7 @@ local project_types = {
     type = "clojurescript",
     patterns = { "shadow-cljs.edn" },
     tasks = {
-      run = { "npx", "shadow-cljs", "watch", "app" },
+      run = { "npm", "run", "watch" },
     },
   },
 }

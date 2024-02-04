@@ -8,6 +8,8 @@ return {
   -- Task runner
   {
     "stevearc/overseer.nvim",
-    opts = {},
+    config = function()
+      require("plugins.configs.overseer").config()
+    end,
   },
 }

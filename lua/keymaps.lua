@@ -41,3 +41,6 @@ map("n", "<leader>f", function()
   local conform = require("conform")
   conform.format({ async = true, lsp_fallback = true })
 end)
+
+-- Toggleterm
+map({ "n", "t" }, "<leader>tt", "<cmd>ToggleTerm<CR>")

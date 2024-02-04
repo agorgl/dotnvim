@@ -44,3 +44,10 @@ end)
 
 -- Toggleterm
 map({ "n", "t" }, "<leader>tt", "<cmd>ToggleTerm<CR>")
+
+-- Overseer
+map({ "n", "t" }, "<leader>tl", "<cmd>OverseerToggle<CR>")
+map({ "n", "t" }, "<leader>ta", "<cmd>OverseerQuickAction<CR>")
+map({ "n", "t" }, "<leader>td", "<cmd>OverseerQuickAction dispose<CR>")
+map({ "n", "t" }, "<leader>tr", "<cmd>OverseerRun<CR>")
+map({ "n", "t" }, "<leader>rr", "<cmd>OverseerRunToggle<CR>")

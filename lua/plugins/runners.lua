@@ -3,7 +3,9 @@ return {
   {
     "akinsho/toggleterm.nvim",
     version = "*",
-    opts = {},
+    opts = {
+      shade_terminals = false,
+    },
   },
   -- Task runner
   {

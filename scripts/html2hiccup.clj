@@ -9,13 +9,15 @@
 (deps/add-deps '{:deps {zprint/zprint {:mvn/version "1.2.8"}}})
 
 (require '[pod.retrogradeorbit.bootleg.utils :refer [convert-to]]
-         '[zprint.core :refer [zprint]])
+         '[zprint.core :refer [zprint-str]]
 
 (-> (slurp *in*)
     (str/replace #"((?<=>)\s+|\s+(?=<))" "")
     (str/replace #"className=\"" "class=\"")
     (convert-to :hiccup-seq)
-    (->> (run! #(zprint % {:style :hiccup
-                           :map {:comma? false :force-nl? true}
-                           :vector {:force-nl? true}
-                           :width 4096}))))
+    (->> (map #(zprint-str % {:style :hiccup
+                              :map {:comma? false :force-nl? true}
+                              :vector {:force-nl? true}
+                              :width 4096}))
+         (str/join "\n"))
+    (println))

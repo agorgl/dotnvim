@@ -37,6 +37,29 @@
        x))
    in))
 
+(defn map-hiccup-attrs [in]
+  (walk/postwalk
+   (fn [x]
+     (if (and (vector? x)
+              (or (keyword? (first x)) (symbol? (first x)))
+              (map? (second x)))
+       (let [attrs
+             (->> (second x)
+                  (map (fn [[k v]]
+                         (let [k (case k
+                                   :classname :class
+                                   :viewbox :viewBox
+                                   :baseprofile :baseProfile
+                                   k)
+                               v (cond
+                                   (= v "") true
+                                   :else v)]
+                           [k v])))
+                  (into {}))]
+         (assoc-in x [1] attrs))
+       x))
+   in))
+
 (defn format-hiccup [in]
   (-> in
       (zprint-str
@@ -50,6 +73,7 @@
     (munge-html-tags)
     (convert-to :hiccup-seq)
     (->> (map #(-> %
+                   map-hiccup-attrs
                    demunge-hiccup-tags
                    format-hiccup))
          (str/join "\n"))

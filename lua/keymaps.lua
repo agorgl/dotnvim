@@ -51,3 +51,6 @@ map({ "n", "t" }, "<leader>ta", "<cmd>OverseerQuickAction<CR>")
 map({ "n", "t" }, "<leader>td", "<cmd>OverseerQuickAction dispose<CR>")
 map({ "n", "t" }, "<leader>tr", "<cmd>OverseerRun<CR>")
 map({ "n", "t" }, "<leader>rr", "<cmd>OverseerRunToggle<CR>")
+
+-- Scripts
+map({ "v", "x" }, "<leader>h", ":'<,'>!bb " .. vim.fn.stdpath("config") .. "/scripts/html2hiccup.clj<CR>")

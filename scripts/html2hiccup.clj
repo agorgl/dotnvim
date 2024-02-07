@@ -65,7 +65,33 @@
       (zprint-str
        {:style :hiccup
         :map {:comma? false :force-nl? true}
-        :vector {:force-nl? true}
+        :vector {:option-fn
+                 (fn [opts n exprs]
+                   (let [hiccup?
+                         (and (>= n 1)
+                              (not= :> (first exprs))
+                              (or (keyword? (first exprs))
+                                  (symbol? (first exprs))))
+                         hiccup-reagent?
+                         (and (>= n 2)
+                              (= :> (first exprs))
+                              (symbol? (second exprs)))]
+                     (cond
+                       (and hiccup? (>= n 2))
+                       {:vector {:fn-format
+                                 (cond
+                                   (map? (second exprs)) :arg1-force-nl
+                                   (and (= n 2) (not (coll? (second exprs)))) nil
+                                   :else :flow)}}
+                       (and hiccup-reagent? (>= n 3))
+                       {:vector {:fn-format
+                                 (cond
+                                   (map? (nth exprs 2)) :arg2-force-nl
+                                   (and (= n 3) (not (coll? (nth exprs 2)))) nil
+                                   :else :arg1-force-nl)}}
+                       (and (not hiccup?) (not hiccup-reagent?) (:fn-format (:vector opts)))
+                       {:vector {:fn-format nil}}
+                       :else nil)))}
         :width 4096})))
 
 (-> (slurp *in*)

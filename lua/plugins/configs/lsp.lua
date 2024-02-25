@@ -113,7 +113,24 @@ local function yamlls_config()
     builtin_matchers = {
       kubernetes = { enabled = true },
     },
-    schemas = {},
+    schemas = {
+      {
+        name = "Argo CD Application",
+        uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json",
+      },
+      {
+        name = "Argo CD ApplicationSet",
+        uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/applicationset_v1alpha1.json",
+      },
+      {
+        name = "Argo Workflows Workflow",
+        uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/workflow_v1alpha1.json",
+      },
+      {
+        name = "Argo Workflows WorkflowTemplate",
+        uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/workflowtemplate_v1alpha1.json",
+      },
+    },
     lspconfig = lsp_config,
   }
 

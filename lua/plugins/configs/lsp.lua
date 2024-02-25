@@ -85,6 +85,41 @@ function M.setup_floating_windows()
   end
 end
 
+local function yamlls_config()
+  local schemastore = require("schemastore")
+  local yaml_companion = require("yaml-companion")
+
+  local lsp_config = {
+    settings = {
+      yaml = {
+        format = { enable = true },
+        validate = true,
+        hover = true,
+        schemaStore = {
+          enable = false,
+          url = "",
+        },
+        schemas = schemastore.yaml.schemas({
+          select = {
+            "kustomization.yaml",
+          },
+        }),
+      },
+      redhat = { telemetry = { enabled = false } },
+    },
+  }
+
+  local companion_config = {
+    builtin_matchers = {
+      kubernetes = { enabled = true },
+    },
+    schemas = {},
+    lspconfig = lsp_config,
+  }
+
+  return yaml_companion.setup(companion_config)
+end
+
 function M.setup_language_servers()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -97,6 +132,7 @@ function M.setup_language_servers()
     jdtls = {},
     clojure_lsp = {},
     ccls = {},
+    yamlls = yamlls_config(),
     tailwindcss = {
       settings = {
         tailwindCSS = {

@@ -150,6 +150,7 @@ function M.setup_language_servers()
     clojure_lsp = {},
     ccls = {},
     yamlls = yamlls_config(),
+    ansiblels = {},
     tailwindcss = {
       settings = {
         tailwindCSS = {

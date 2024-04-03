@@ -85,6 +85,38 @@ function M.setup_floating_windows()
   end
 end
 
+function M.setup_filetype_detection()
+  local yaml_ft = function(path, bufnr)
+    -- Get content of buffer as string
+    local content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    if type(content) == "table" then
+      content = table.concat(content, "\n")
+    end
+
+    -- Check if file is in roles, tasks, or handlers folder
+    local path_regex = vim.regex("(tasks\\|roles\\|handlers)/")
+    if path_regex and path_regex:match_str(path) then
+      return "yaml.ansible"
+    end
+
+    -- Check for known ansible playbook text and if found, return yaml.ansible
+    local regex = vim.regex("hosts:\\|tasks:")
+    if regex and regex:match_str(content) then
+      return "yaml.ansible"
+    end
+
+    -- Return yaml if nothing else
+    return "yaml"
+  end
+
+  vim.filetype.add({
+    extension = {
+      yml = yaml_ft,
+      yaml = yaml_ft,
+    },
+  })
+end
+
 local function yamlls_config()
   local schemastore = require("schemastore")
   local yaml_companion = require("yaml-companion")
@@ -184,6 +216,7 @@ function M.config()
   M.setup_diagnostic_config()
   M.setup_diagnostic_hover()
   M.setup_floating_windows()
+  M.setup_filetype_detection()
   M.setup_language_servers()
 end
 

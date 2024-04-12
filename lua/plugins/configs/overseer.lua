@@ -18,20 +18,21 @@ local project_types = {
   },
 }
 
-local function find_project_type(root)
-  local files = require("overseer.files")
+local function find_project_type(path)
+  local any_pattern_exists = function(patterns)
+    local found = vim.fs.find(function(name)
+      local matches = vim.tbl_filter(function(pat)
+        local candidates = vim.split(vim.fn.glob(pat), "\n")
+        return vim.tbl_contains(candidates, name)
+      end, patterns)
+      return not vim.tbl_isempty(matches)
+    end, { upward = true, path = path, stop = vim.loop.os_homedir() })
+    return not vim.tbl_isempty(found)
+  end
 
   for _, t in ipairs(project_types) do
-    local relpaths = function(dir, paths)
-      return vim.tbl_map(function(p)
-        return files.join(dir, p)
-      end, paths)
-    end
-    local patterns = relpaths(root, t.patterns)
-    local skip_patterns = relpaths(root, t.skip_patterns or {})
-
-    local match = files.any_exists(unpack(patterns))
-    local skip = files.any_exists(unpack(skip_patterns))
+    local match = any_pattern_exists(t.patterns)
+    local skip = any_pattern_exists(t.skip_patterns or {})
     if match and not skip then
       return t
     end

@@ -63,8 +63,7 @@ function M.config()
         term:toggle()
       end
     else
-      --overseer.run_template({ tags = { overseer.TAG.BUILD } })
-      overseer.run_template({ tags = { "RUN" } })
+      overseer.run_template({ tags = { overseer.TAG.RUN } })
     end
   end, {})
 

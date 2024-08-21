@@ -121,7 +121,7 @@ function M.config()
     group = conjure_log_group,
     pattern = "conjure-log-*",
     callback = function()
-      vim.diagnostic.disable(0)
+      vim.diagnostic.enable(false)
     end,
   })
 end

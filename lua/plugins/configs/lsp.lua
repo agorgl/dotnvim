@@ -177,7 +177,7 @@ function M.setup_language_servers()
   local servers = {
     rust_analyzer = {},
     pyright = {},
-    tsserver = {},
+    ts_ls = {},
     gopls = {},
     jdtls = {},
     clojure_lsp = {},

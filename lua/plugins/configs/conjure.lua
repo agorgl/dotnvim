@@ -121,7 +121,8 @@ function M.config()
     group = conjure_log_group,
     pattern = "conjure-log-*",
     callback = function()
-      vim.diagnostic.enable(false)
+      local buffer = vim.api.nvim_get_current_buf()
+      vim.diagnostic.enable(false, { bufnr = buffer })
     end,
   })
 end

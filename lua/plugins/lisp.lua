@@ -16,6 +16,7 @@ return {
   -- Interactive evaluation
   {
     "Olical/conjure",
+    branch = "main",
     ft = { "clojure", "scheme" },
     config = function()
       require("plugins.configs.conjure").config()

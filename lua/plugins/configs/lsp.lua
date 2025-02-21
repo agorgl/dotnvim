@@ -181,14 +181,7 @@ function M.setup_language_servers()
     gopls = {},
     jdtls = {},
     clojure_lsp = {},
-    ccls = {
-      init_options = {
-        compilationDatabaseDirectory = "build",
-        cache = {
-          hierarchicalPath = true,
-        },
-      },
-    },
+    clangd = {},
     yamlls = yamlls_config(),
     ansiblels = {},
     lua_ls = {

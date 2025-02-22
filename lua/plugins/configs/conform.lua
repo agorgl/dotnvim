@@ -24,6 +24,21 @@ function M.config()
   local opts = {
     formatters_by_ft = {
       lua = { "stylua" },
+      c = { "clang-format" },
+    },
+    formatters = {
+      ["clang-format"] = {
+        prepend_args = function()
+          local clang_format_config = ".clang-format"
+          if vim.fs.root(0, clang_format_config) then
+            return nil
+          end
+          local config = vim.api.nvim_get_runtime_file(vim.fs.joinpath("data", clang_format_config), false)[1]
+
+          local style_arg = string.format("--style=file:%s", config)
+          return { style_arg }
+        end,
+      },
     },
     format_on_save = function(bufnr)
       -- Disable with a global or buffer-local variable

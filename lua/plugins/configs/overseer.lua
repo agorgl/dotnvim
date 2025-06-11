@@ -2,6 +2,13 @@ local M = {}
 
 local project_types = {
   {
+    type = "c",
+    patterns = { "meson.build" },
+    tasks = {
+      run = { "meson", "compile", "-C", "build" },
+    },
+  },
+  {
     type = "clojure",
     patterns = { "deps.edn" },
     skip_patterns = { "shadow-cljs.edn" },

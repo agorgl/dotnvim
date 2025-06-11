@@ -17,8 +17,8 @@ map("n", "<leader>gg", "<cmd>tab Git<CR>")
 
 -- LSP
 map("n", "<space>e", vim.diagnostic.open_float)
-map("n", "[d", vim.diagnostic.goto_prev)
-map("n", "]d", vim.diagnostic.goto_next)
+map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end)
+map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end)
 map("n", "<space>q", vim.diagnostic.setloclist)
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspKeymaps", {}),

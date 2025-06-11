@@ -34,3 +34,22 @@ for scope, tbl in pairs(options) do
     vim[scope][k] = v
   end
 end
+
+local filetype_options = {
+  mail = {
+    formatoptions = "tcqjawl", -- automatic formatting options
+    list = true, -- show trailing spaces as '-'
+  },
+}
+
+for ft, tbl in pairs(filetype_options) do
+  vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup(ft .. "_filetype", { clear = true }),
+    pattern = ft,
+    callback = function()
+      for k, v in pairs(tbl) do
+        vim.opt_local[k] = v
+      end
+    end,
+  })
+end

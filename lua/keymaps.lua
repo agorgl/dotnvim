@@ -1,5 +1,9 @@
 local map = vim.keymap.set
 
+-- Movement
+map("n", "j", "gj")
+map("n", "k", "gk")
+
 -- Tabs
 map({ "n", "t" }, "<M-n>", "<cmd>tabnext<CR>")
 map({ "n", "t" }, "<M-p>", "<cmd>tabprev<CR>")

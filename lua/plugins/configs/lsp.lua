@@ -41,15 +41,16 @@ function M.setup_semantic_highlights()
 end
 
 function M.setup_diagnostic_signs()
-  local diagnostic_signs = {
-    { name = "DiagnosticSignError", text = "✘✘" },
-    { name = "DiagnosticSignWarn", text = "!!" },
-    { name = "DiagnosticSignInfo", text = "--" },
-    { name = "DiagnosticSignHint", text = "**" },
-  }
-  for _, sign in ipairs(diagnostic_signs) do
-    vim.fn.sign_define(sign.name, { text = sign.text, texthl = sign.name })
-  end
+  vim.diagnostic.config({
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = "✘✘",
+        [vim.diagnostic.severity.WARN] = "!!",
+        [vim.diagnostic.severity.INFO] = "--",
+        [vim.diagnostic.severity.HINT] = "**",
+      },
+    },
+  })
 end
 
 function M.setup_diagnostic_config()

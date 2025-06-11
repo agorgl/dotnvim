@@ -7,5 +7,8 @@ return {
     },
     main = "dapui",
     opts = {},
+    config = function()
+      require("plugins.configs.dap").config()
+    end,
   },
 }

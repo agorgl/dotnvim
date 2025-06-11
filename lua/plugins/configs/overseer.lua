@@ -2,6 +2,13 @@ local M = {}
 
 local project_types = {
   {
+    type = "just",
+    patterns = { "justfile" },
+    tasks = {
+      run = { "just", "run" },
+    },
+  },
+  {
     type = "c",
     patterns = { "meson.build" },
     tasks = {

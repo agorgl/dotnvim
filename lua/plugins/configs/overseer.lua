@@ -20,14 +20,14 @@ local project_types = {
     patterns = { "deps.edn" },
     skip_patterns = { "shadow-cljs.edn" },
     tasks = {
-      run = { "clj", "-M:dev:repl/headless" },
+      run = { "clj", "-M:dev:test:repl/headless" },
     },
   },
   {
     type = "clojurescript",
     patterns = { "shadow-cljs.edn" },
     tasks = {
-      run = { "npm", "run", "watch" },
+      run = { "clj", "-M:dev:test:repl/headless:cljs" },
     },
   },
 }

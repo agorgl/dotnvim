@@ -29,4 +29,10 @@ return {
       require("plugins.configs.conform").config()
     end,
   },
+  -- Alignment
+  {
+    "echasnovski/mini.align",
+    version = "*",
+    opts = {},
+  },
 }

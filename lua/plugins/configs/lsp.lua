@@ -171,7 +171,6 @@ local function yamlls_config()
 end
 
 function M.setup_language_servers()
-  local lspconfig = require("lspconfig")
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
@@ -232,7 +231,8 @@ function M.setup_language_servers()
       capabilities = capabilities,
     }
     config = vim.tbl_extend("force", config, opts)
-    lspconfig[server].setup(config)
+    vim.lsp.config(server, config)
+    vim.lsp.enable(server)
   end
 end
 

@@ -59,25 +59,71 @@ function M.config()
   local overseer = require("overseer")
 
   local opts = {
-    strategy = {
-      "toggleterm",
-    },
     task_list = {
       direction = "right",
     },
   }
   overseer.setup(opts)
 
+  local toggle_state = {
+    created = false,
+    task = nil,
+    buffer = -1,
+    window = -1,
+  }
+
   vim.api.nvim_create_user_command("OverseerRunToggle", function()
-    local tasks = overseer.list_tasks()
-    if not vim.tbl_isempty(tasks) then
-      local task = tasks[1]
-      if task.strategy.name == "toggleterm" then
-        local term = task.strategy.term
-        term:toggle()
-      end
+    if vim.api.nvim_win_is_valid(toggle_state.window) then
+      vim.api.nvim_win_hide(toggle_state.window)
+      toggle_state.window = -1
     else
-      overseer.run_template({ tags = { overseer.TAG.RUN } })
+      local setup_window = function(window)
+        vim.api.nvim_set_option_value("number", false, { scope = "local", win = window })
+        vim.api.nvim_set_option_value("relativenumber", false, { scope = "local", win = window })
+        vim.api.nvim_set_option_value("signcolumn", "no", { scope = "local", win = window })
+      end
+
+      local maybe_insert = function(task)
+        if task and task:is_running() then
+          vim.cmd("startinsert")
+        end
+      end
+
+      if not toggle_state.created then
+        toggle_state.created = true
+
+        local temp_buf = vim.api.nvim_create_buf(false, true)
+        toggle_state.buffer = temp_buf
+
+        overseer.run_task({ tags = { overseer.TAG.RUN } }, function(task)
+          if task:has_component("on_complete_dispose") then
+            task:remove_component("on_complete_dispose")
+          end
+
+          toggle_state.task = task
+          toggle_state.buffer = task:get_bufnr()
+
+          if toggle_state.window ~= -1 then
+            vim.api.nvim_win_set_buf(toggle_state.window, toggle_state.buffer)
+            setup_window(toggle_state.window)
+            maybe_insert(toggle_state.task)
+          end
+        end)
+      else
+        local task = toggle_state.task
+        if task and task:is_complete() then
+          task:restart()
+          toggle_state.buffer = task:get_bufnr()
+        end
+      end
+
+      toggle_state.window = vim.api.nvim_open_win(toggle_state.buffer, true, {
+        height = 12,
+        split = "below",
+        win = -1,
+      })
+      setup_window(toggle_state.window)
+      maybe_insert(toggle_state.task)
     end
   end, {})
 
@@ -99,17 +145,24 @@ function M.config()
 
     overseer.register_template({
       name = t.type,
-      generator = function(_, cb)
-        cb(task_templates)
+      generator = function(search)
+        local pt = find_project_type(search.dir)
+        if pt == nil or t.type ~= pt.type then
+          return nil
+        end
+        return task_templates
       end,
-      condition = {
-        callback = function(search)
-          local pt = find_project_type(search.dir)
-          return pt ~= nil and t.type == pt.type
-        end,
-      },
     })
   end
+
+  local overseer_setup_group = vim.api.nvim_create_augroup("overseer_setup", { clear = true })
+  vim.api.nvim_create_autocmd({ "VimEnter", "DirChanged" }, {
+    group = overseer_setup_group,
+    callback = function()
+      local cwd = vim.fn.getcwd()
+      overseer.preload_task_cache({ dir = cwd })
+    end,
+  })
 end
 
 return M

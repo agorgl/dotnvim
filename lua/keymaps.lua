@@ -13,6 +13,7 @@ local telescope_builtin = require("telescope.builtin")
 local telescope_config = require("plugins.configs.telescope")
 map("n", "<leader>ff", telescope_config.smart_find)
 map("n", "<leader>fw", telescope_builtin.live_grep)
+map({ "n", "v" }, "<leader>fs", telescope_builtin.grep_string)
 
 -- Nvimtree
 map("n", "<F2>", "<cmd>NvimTreeToggle<CR>")

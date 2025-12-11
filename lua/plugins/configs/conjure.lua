@@ -10,9 +10,7 @@ function M.config()
   vim.g["conjure#client_on_load"] = false
   vim.g["conjure#completion#omnifunc"] = false
   vim.g["conjure#completion#fallback"] = false
-  vim.g["conjure#client#clojure#nrepl#mapping#refresh_changed"] = false
-  vim.g["conjure#client#clojure#nrepl#mapping#refresh_all"] = false
-  vim.g["conjure#client#clojure#nrepl#mapping#refresh_clear"] = false
+  vim.g["conjure#client#clojure#nrepl#mapping#refresh_changed"] = "rm"
 
   local client_state = function(key)
     if key == nil or key == "" then

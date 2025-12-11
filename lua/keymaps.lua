@@ -10,7 +10,8 @@ map({ "n", "t" }, "<M-p>", "<cmd>tabprev<CR>")
 
 -- Telescope
 local telescope_builtin = require("telescope.builtin")
-map("n", "<leader>ff", telescope_builtin.find_files)
+local telescope_config = require("plugins.configs.telescope")
+map("n", "<leader>ff", telescope_config.smart_find)
 map("n", "<leader>fw", telescope_builtin.live_grep)
 
 -- Nvimtree

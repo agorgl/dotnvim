@@ -214,8 +214,9 @@ function M.setup_language_servers()
         tailwindCSS = {
           experimental = {
             classRegex = {
-              ':class\\s+"([^"]*)"',
-              ":[\\w-.#>]+\\.([\\w-]*)",
+              { ":class\\s+\\[([^\\]]*?)\\]", '[:"]([^\\s"]*)"?' },
+              { ':class\\s+"([^"]*?)"', "([^\\s]*)" },
+              { "\\[:[^\\.]+((\\.[^\\.]+)*)", "\\.([^\\.]*)" },
             },
           },
           includeLanguages = {

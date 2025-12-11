@@ -11,6 +11,7 @@ function M.config()
   vim.g["conjure#completion#omnifunc"] = false
   vim.g["conjure#completion#fallback"] = false
   vim.g["conjure#client#clojure#nrepl#mapping#refresh_changed"] = "rm"
+  vim.g["conjure#client#clojure#nrepl#refresh#backend"] = "clj-reload"
 
   local client_state = function(key)
     if key == nil or key == "" then

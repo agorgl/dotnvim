@@ -22,6 +22,7 @@ local options = {
     timeoutlen = 1000, -- length of time to wait for a mapped sequence
     updatetime = 300, -- length of time to wait before triggering the plugin
     signcolumn = "auto:1", -- when and how to draw the signcolumn
+    winborder = "rounded", -- default border style of floating windows
   },
   g = {
     mapleader = ",", -- leader key

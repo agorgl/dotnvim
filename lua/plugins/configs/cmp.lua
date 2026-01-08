@@ -11,7 +11,6 @@ function M.config()
   end
 
   local border_opts = {
-    border = "rounded",
     winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
   }
   local opts = {

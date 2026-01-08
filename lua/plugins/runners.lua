@@ -5,9 +5,6 @@ return {
     version = "*",
     opts = {
       shade_terminals = false,
-      float_opts = {
-        border = "rounded",
-      },
     },
   },
   -- Task runner

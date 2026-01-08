@@ -6,9 +6,6 @@ function M.setup_lsp_signature(buf)
     bind = true,
     hint_enable = false,
     hint_prefix = "",
-    handler_opts = {
-      border = "rounded",
-    },
   }, buf)
 end
 
@@ -58,9 +55,6 @@ function M.setup_diagnostic_config()
     underline = false,
     virtual_text = false,
     severity_sort = true,
-    float = {
-      border = "rounded",
-    },
   }
   vim.diagnostic.config(config)
 end
@@ -72,18 +66,6 @@ function M.setup_diagnostic_hover()
       vim.diagnostic.open_float(nil, { focus = false })
     end,
   })
-end
-
-function M.setup_floating_windows()
-  local handlers = {
-    ["textDocument/hover"] = vim.lsp.handlers.hover,
-    ["textDocument/signatureHelp"] = vim.lsp.handlers.signature_help,
-  }
-  for handler, fn in pairs(handlers) do
-    vim.lsp.handlers[handler] = vim.lsp.with(fn, {
-      border = "rounded",
-    })
-  end
 end
 
 function M.setup_filetype_detection()
@@ -243,7 +225,6 @@ function M.config()
   M.setup_diagnostic_signs()
   M.setup_diagnostic_config()
   M.setup_diagnostic_hover()
-  M.setup_floating_windows()
   M.setup_filetype_detection()
   M.setup_language_servers()
 end

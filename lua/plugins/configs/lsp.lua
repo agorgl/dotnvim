@@ -71,9 +71,10 @@ end
 function M.setup_filetype_detection()
   local yaml_ft = function(path, bufnr)
     -- Get content of buffer as string
-    local content = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-    if type(content) == "table" then
-      content = table.concat(content, "\n")
+    local content = ""
+    local content_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    if type(content_lines) == "table" then
+      content = table.concat(content_lines, "\n")
     end
 
     -- Check if file is in roles, tasks, or handlers folder

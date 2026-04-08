@@ -37,6 +37,9 @@
        x))
    in))
 
+(defn split-classes [class-str]
+  (str/split class-str #"\s+"))
+
 (defn map-hiccup-attrs [in]
   (walk/postwalk
    (fn [x]
@@ -53,6 +56,7 @@
                                    k)
                                v (cond
                                    (= v "") true
+                                   (= k :class) (split-classes v)
                                    :else v)]
                            [k v])))
                   (into {}))]

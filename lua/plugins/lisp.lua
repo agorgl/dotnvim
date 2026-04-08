@@ -12,6 +12,9 @@ return {
       "tpope/vim-sexp-mappings-for-regular-people",
     },
     ft = { "clojure", "scheme" },
+    init = function()
+      require("plugins.configs.sexp").init()
+    end,
   },
   -- Interactive evaluation
   {

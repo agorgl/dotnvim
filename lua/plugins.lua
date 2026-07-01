@@ -11,7 +11,8 @@ local plugin_module = function(name)
 end
 
 local specs = {
-  -- TODO
+  -- navigation
+  { src = gh("ibhagwan/fzf-lua") },
 }
 
 local events = {}

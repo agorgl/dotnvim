@@ -24,6 +24,7 @@ local specs = {
   { src = gh("windwp/nvim-autopairs") },
   { src = gh("windwp/nvim-ts-autotag") },
   { src = gh("stevearc/conform.nvim") },
+  { src = gh("nvim-mini/mini.align") },
 }
 
 local events = {}

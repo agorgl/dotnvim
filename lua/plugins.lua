@@ -41,6 +41,9 @@ local specs = {
   -- runners
   { src = gh("akinsho/toggleterm.nvim") },
   { src = gh("stevearc/overseer.nvim") },
+
+  -- lisp
+  { src = gh("eraserhd/parinfer-rust") },
 }
 
 local events = {}

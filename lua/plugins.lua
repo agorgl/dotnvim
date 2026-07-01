@@ -13,6 +13,7 @@ end
 local specs = {
   -- navigation
   { src = gh("ibhagwan/fzf-lua") },
+  { src = gh("stevearc/oil.nvim") },
 }
 
 local events = {}

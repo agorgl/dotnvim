@@ -40,6 +40,7 @@ local specs = {
 
   -- runners
   { src = gh("akinsho/toggleterm.nvim") },
+  { src = gh("stevearc/overseer.nvim") },
 }
 
 local events = {}

@@ -14,6 +14,9 @@ local specs = {
   -- navigation
   { src = gh("ibhagwan/fzf-lua") },
   { src = gh("stevearc/oil.nvim") },
+
+  -- syntax
+  { src = gh("nvim-treesitter/nvim-treesitter") },
 }
 
 local events = {}

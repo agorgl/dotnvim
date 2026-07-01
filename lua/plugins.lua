@@ -37,6 +37,9 @@ local specs = {
   -- git
   { src = gh("tpope/vim-fugitive") },
   { src = gh("lewis6991/gitsigns.nvim") },
+
+  -- runners
+  { src = gh("akinsho/toggleterm.nvim") },
 }
 
 local events = {}

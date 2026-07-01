@@ -30,6 +30,9 @@ local specs = {
   { src = gh("saghen/blink.cmp") },
   { src = gh("saghen/blink.lib") },
   { src = gh("rafamadriz/friendly-snippets") },
+
+  -- lsp
+  { src = gh("neovim/nvim-lspconfig") },
 }
 
 local events = {}

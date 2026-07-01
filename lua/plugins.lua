@@ -21,6 +21,7 @@ local specs = {
 
   -- editing
   { src = gh("kylechui/nvim-surround") },
+  { src = gh("windwp/nvim-autopairs") },
 }
 
 local events = {}

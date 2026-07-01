@@ -44,6 +44,8 @@ local specs = {
 
   -- lisp
   { src = gh("eraserhd/parinfer-rust") },
+  { src = gh("guns/vim-sexp") },
+  { src = gh("tpope/vim-sexp-mappings-for-regular-people") },
 }
 
 local events = {}

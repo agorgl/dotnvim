@@ -18,6 +18,9 @@ local specs = {
   -- syntax
   { src = gh("nvim-treesitter/nvim-treesitter") },
   { src = gh("tpope/vim-sleuth") },
+
+  -- editing
+  { src = gh("kylechui/nvim-surround") },
 }
 
 local events = {}

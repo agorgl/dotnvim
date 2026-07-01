@@ -17,4 +17,18 @@ function M.build(kind)
   })
 end
 
+function M.config()
+  vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("nvim-treesitter.config", { clear = true }),
+    pattern = "*",
+    callback = function(_)
+      local ok, _ = pcall(vim.treesitter.start)
+      if ok then
+        -- stylua: ignore
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end
+    end,
+  })
+end
+
 return M

@@ -25,6 +25,10 @@ local specs = {
   { src = gh("windwp/nvim-ts-autotag") },
   { src = gh("stevearc/conform.nvim") },
   { src = gh("nvim-mini/mini.align") },
+
+  -- completion
+  { src = gh("saghen/blink.cmp") },
+  { src = gh("saghen/blink.lib") },
 }
 
 local events = {}

@@ -22,6 +22,7 @@ local specs = {
   -- editing
   { src = gh("kylechui/nvim-surround") },
   { src = gh("windwp/nvim-autopairs") },
+  { src = gh("windwp/nvim-ts-autotag") },
 }
 
 local events = {}

@@ -18,3 +18,6 @@ vim.keymap.set("n", "<leader>fa", "<Cmd>FzfLua builtin<CR>")
 vim.keymap.set("n", "<leader>ff", "<Cmd>FzfLua files<CR>")
 vim.keymap.set("n", "<leader>fw", "<Cmd>FzfLua live_grep<CR>")
 vim.keymap.set("v", "<leader>fs", "<Cmd>FzfLua grep_visual<CR>")
+
+-- oil.nvim
+vim.keymap.set("n", "-", "<Cmd>Oil<CR>")

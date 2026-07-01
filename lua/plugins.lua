@@ -46,6 +46,7 @@ local specs = {
   { src = gh("eraserhd/parinfer-rust") },
   { src = gh("guns/vim-sexp") },
   { src = gh("tpope/vim-sexp-mappings-for-regular-people") },
+  { src = gh("olical/conjure") },
 }
 
 local events = {}

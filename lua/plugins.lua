@@ -33,6 +33,9 @@ local specs = {
 
   -- lsp
   { src = gh("neovim/nvim-lspconfig") },
+
+  -- git
+  { src = gh("tpope/vim-fugitive") },
 }
 
 local events = {}

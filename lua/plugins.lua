@@ -23,6 +23,7 @@ local specs = {
   { src = gh("kylechui/nvim-surround") },
   { src = gh("windwp/nvim-autopairs") },
   { src = gh("windwp/nvim-ts-autotag") },
+  { src = gh("stevearc/conform.nvim") },
 }
 
 local events = {}

@@ -1,3 +1,53 @@
 --
 -- plugins
 --
+
+local gh = function(x)
+  return "https://github.com/" .. x
+end
+
+local plugin_module = function(name)
+  return string.format("plugin.%s", string.gsub(name, "[.-]", "_"))
+end
+
+local specs = {
+  -- TODO
+}
+
+local events = {}
+vim.api.nvim_create_autocmd("PackChanged", {
+  group = vim.api.nvim_create_augroup("pack.changed", { clear = true }),
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    events[name] = kind
+  end,
+})
+
+vim.pack.add(specs, { confirm = false })
+
+---@diagnostic disable: redefined-local
+for _, plugin in ipairs(vim.pack.get()) do
+  local plugin_name = plugin.spec.name
+  local ok, module = pcall(require, plugin_module(plugin_name))
+  if ok then
+    local event_kind = events[plugin_name]
+    if event_kind ~= nil then
+      if module.build ~= nil then
+        local ok, result = xpcall(module.build, debug.traceback, event_kind)
+        if not ok then
+          local msg = string.format("error: plugins: could not build plugin '%s': %s", plugin_name, result)
+          vim.notify(msg, vim.log.levels.ERROR)
+        end
+      end
+    end
+
+    if module.config ~= nil then
+      local ok, result = xpcall(module.config, debug.traceback)
+      if not ok then
+        local msg = string.format("error: plugins: could not configure plugin '%s': %s", plugin_name, result)
+        vim.notify(msg, vim.log.levels.ERROR)
+      end
+    end
+  end
+end
+---@diagnostic enable: redefined-local

@@ -29,6 +29,7 @@ local specs = {
   -- completion
   { src = gh("saghen/blink.cmp") },
   { src = gh("saghen/blink.lib") },
+  { src = gh("rafamadriz/friendly-snippets") },
 }
 
 local events = {}

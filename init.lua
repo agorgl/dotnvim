@@ -7,6 +7,7 @@ local modules = {
   "plugins",
   "keymaps",
   "diagnostics",
+  "lsp",
   "colors",
 }
 

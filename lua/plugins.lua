@@ -56,6 +56,7 @@ local specs = {
 
   -- colorscheme
   { src = gh("navarasu/onedark.nvim") },
+  { src = gh("agorgl/nvim-bg") },
 }
 
 local events = {}

@@ -6,6 +6,7 @@ local configs = {
   clangd = {},
   clojure_lsp = {},
   jdtls = {},
+  pyright = {},
   lua_ls = {
     settings = {
       Lua = {

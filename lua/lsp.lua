@@ -9,6 +9,7 @@ local configs = {
   rust_analyzer = {},
   gopls = {},
   pyright = {},
+  ts_ls = {},
   lua_ls = {
     settings = {
       Lua = {

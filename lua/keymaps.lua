@@ -27,3 +27,8 @@ vim.keymap.set("n", "<leader>gg", "<Cmd>tab Git<CR>")
 
 -- toggleterm.nvim
 vim.keymap.set({ "n", "t" }, "<leader>tt", "<Cmd>ToggleTerm<CR>")
+
+-- overseer.nvim
+vim.keymap.set({ "n", "t" }, "<leader>tl", "<Cmd>OverseerToggle<CR>")
+vim.keymap.set({ "n", "t" }, "<leader>tr", "<Cmd>OverseerRun<CR>")
+vim.keymap.set({ "n", "t" }, "<leader>ts", "<Cmd>OverseerShell<CR>")

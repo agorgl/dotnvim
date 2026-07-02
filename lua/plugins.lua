@@ -51,6 +51,7 @@ local specs = {
   -- ui
   { src = gh("nvim-lualine/lualine.nvim") },
   { src = gh("akinsho/bufferline.nvim") },
+  { src = gh("folke/which-key.nvim") },
 }
 
 local events = {}

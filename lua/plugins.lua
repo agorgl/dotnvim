@@ -47,6 +47,9 @@ local specs = {
   { src = gh("guns/vim-sexp") },
   { src = gh("tpope/vim-sexp-mappings-for-regular-people") },
   { src = gh("olical/conjure") },
+
+  -- ui
+  { src = gh("nvim-lualine/lualine.nvim") },
 }
 
 local events = {}

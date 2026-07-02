@@ -3,6 +3,7 @@
 --
 
 local configs = {
+  clangd = {},
   lua_ls = {
     settings = {
       Lua = {

@@ -7,6 +7,7 @@ local configs = {
   clojure_lsp = {},
   jdtls = {},
   rust_analyzer = {},
+  gopls = {},
   pyright = {},
   lua_ls = {
     settings = {

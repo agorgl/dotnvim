@@ -53,6 +53,9 @@ local specs = {
   { src = gh("akinsho/bufferline.nvim") },
   { src = gh("folke/which-key.nvim") },
   { src = gh("j-hui/fidget.nvim") },
+
+  -- colorscheme
+  { src = gh("navarasu/onedark.nvim") },
 }
 
 local events = {}

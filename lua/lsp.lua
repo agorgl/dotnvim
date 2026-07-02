@@ -4,6 +4,7 @@
 
 local configs = {
   clangd = {},
+  clojure_lsp = {},
   lua_ls = {
     settings = {
       Lua = {

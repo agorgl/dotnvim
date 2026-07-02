@@ -22,5 +22,8 @@ vim.keymap.set("v", "<leader>fs", "<Cmd>FzfLua grep_visual<CR>")
 -- oil.nvim
 vim.keymap.set("n", "-", "<Cmd>Oil<CR>")
 
+-- vim-fugitive
+vim.keymap.set("n", "<leader>gg", "<Cmd>tab Git<CR>")
+
 -- toggleterm.nvim
 vim.keymap.set({ "n", "t" }, "<leader>tt", "<Cmd>ToggleTerm<CR>")

@@ -5,6 +5,7 @@
 local configs = {
   clangd = {},
   clojure_lsp = {},
+  janet_lsp = {},
   jdtls = {},
   rust_analyzer = {},
   gopls = {},

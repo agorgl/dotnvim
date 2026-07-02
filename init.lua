@@ -6,6 +6,7 @@ local modules = {
   "options",
   "plugins",
   "keymaps",
+  "colors",
 }
 
 for _, m in ipairs(modules) do

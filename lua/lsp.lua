@@ -32,3 +32,5 @@ for server, config in pairs(configs) do
   vim.lsp.config(server, config)
   vim.lsp.enable(server)
 end
+
+vim.lsp.semantic_tokens.enable(false, { bufnr = nil })

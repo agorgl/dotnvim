@@ -22,11 +22,20 @@ function M.config()
     group = vim.api.nvim_create_augroup("nvim-treesitter.config", { clear = true }),
     pattern = "*",
     callback = function(_)
+      ---@diagnostic disable: redefined-local
       local ok, _ = pcall(vim.treesitter.start)
       if ok then
-        -- stylua: ignore
-        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        local parser = vim.treesitter.get_parser()
+        if parser then
+          local lang = parser:lang()
+          local ok, result = pcall(vim.treesitter.query.get, lang, "indents")
+          if ok and result then
+            -- stylua: ignore
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end
       end
+      ---@diagnostic enable: redefined-local
     end,
   })
 end

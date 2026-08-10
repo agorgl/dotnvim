@@ -13,6 +13,7 @@ function M.config()
     "scheme",
     "lisp",
   }
+  vim.g["conjure#mapping#doc_word"] = false
   vim.g["conjure#filetype#janet"] = "conjure.client.janet.stdio"
 end
 

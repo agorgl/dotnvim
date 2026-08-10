@@ -46,6 +46,7 @@ function M.config()
       documentation = { auto_show = true },
     },
     signature = { enabled = true },
+    fuzzy = { max_typos = 0 },
   })
 end
 

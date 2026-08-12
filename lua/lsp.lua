@@ -11,6 +11,15 @@ local configs = {
   gopls = {},
   pyright = {},
   ts_ls = {},
+  yamlls = {
+    settings = {
+      yaml = {
+        schemas = {
+          ["kubernetes"] = { "*.yaml", "*.yml" },
+        },
+      },
+    },
+  },
   lua_ls = {
     settings = {
       Lua = {

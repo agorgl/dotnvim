@@ -73,14 +73,35 @@ vim.api.nvim_create_autocmd("UIEnter", {
   end,
 })
 
+local function setup_mail_options(format_flowed)
+  format_flowed = (format_flowed == nil) and true or format_flowed
+
+  if format_flowed then
+    -- maximum width of text that is being inserted
+    vim.opt_local.textwidth = 72
+    -- long lines don't wrap and don't continue on the next line
+    vim.opt_local.wrap = false
+    -- automatic formatting options
+    vim.opt_local.formatoptions = "tcqjawl"
+    -- show trailing spaces as '-'
+    vim.opt_local.list = true
+  else
+    -- maximum width of text that is being inserted
+    vim.opt_local.textwidth = 0
+    -- long lines wrap and continue on the next line
+    vim.opt_local.wrap = true
+    -- automatic formatting options
+    vim.opt_local.formatoptions = "qj"
+    -- don't show trailing spaces as '-'
+    vim.opt_local.list = false
+  end
+end
+
 -- mail filetype specific options
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("filetype.mail", { clear = true }),
   pattern = "mail",
   callback = function()
-    -- automatic formatting options
-    vim.opt_local.formatoptions = "tcqjawl"
-    -- show trailing spaces as '-'
-    vim.opt_local.list = true
+    setup_mail_options(vim.g.mail_format_flowed)
   end,
 })

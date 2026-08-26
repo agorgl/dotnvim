@@ -76,15 +76,29 @@ for _, plugin in ipairs(vim.pack.get()) do
   local plugin_name = plugin.spec.name
   local ok, module = pcall(require, plugin_module(plugin_name))
   if ok then
-    local event_kind = events[plugin_name]
-    if event_kind ~= nil then
-      if module.build ~= nil then
+    if module.build ~= nil then
+      local build = function(event_kind)
         local ok, result = xpcall(module.build, debug.traceback, event_kind)
         if not ok then
           local msg = string.format("error: plugins: could not build plugin '%s': %s", plugin_name, result)
           vim.notify(msg, vim.log.levels.ERROR)
         end
       end
+
+      local event_kind = events[plugin_name]
+      if event_kind ~= nil then
+        build(event_kind)
+      end
+
+      vim.api.nvim_create_autocmd("PackChanged", {
+        group = vim.api.nvim_create_augroup("pack.updated." .. plugin_name, { clear = true }),
+        callback = function(ev)
+          local name, kind = ev.data.spec.name, ev.data.kind
+          if name == plugin_name and kind == "update" then
+            build(kind)
+          end
+        end,
+      })
     end
 
     if module.config ~= nil then

@@ -5,16 +5,16 @@
 local M = {}
 
 function M.build(kind)
-  vim.api.nvim_create_autocmd("VimEnter", {
-    once = true,
-    callback = function()
-      if kind == "install" then
+  if kind == "install" then
+    vim.api.nvim_create_autocmd("VimEnter", {
+      once = true,
+      callback = function()
         vim.cmd("TSInstall all")
-      else
-        vim.cmd("TSUpdate")
-      end
-    end,
-  })
+      end,
+    })
+  else
+    vim.cmd("TSUpdate")
+  end
 end
 
 function M.config()

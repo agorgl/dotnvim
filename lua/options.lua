@@ -95,6 +95,9 @@ local function setup_mail_options(format_flowed)
     -- don't show trailing spaces as '-'
     vim.opt_local.list = false
   end
+
+  -- never show status line
+  vim.opt_local.laststatus = 0
 end
 
 -- mail filetype specific options
